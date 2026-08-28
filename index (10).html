@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>✨ Мой Волшебный Уголок ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ===== тема: розово-кремовая (по умолчанию) ===== */
+    --bg-1:#FFF3EC;
+    --bg-2:#FFE4EC;
+    --bg-3:#FFD9E8;
+    --card:#FFFDFB;
+    --card-soft:#FFF0F5;
+    --accent:#FF9EC7;
+    --accent-2:#FFC1A0;
+    --accent-deep:#F97CA8;
+    --text-main:#7A5468;
+    --text-soft:#B48A9C;
+    --title:#F06AA0;
+    --btn-grad-1:#FFB6D5;
+    --btn-grad-2:#FF9EC7;
+    --shadow-c: 255,158,199;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Nunito', sans-serif;
+    color:var(--text-main);
+    background:
+      radial-gradient(circle at 15% 10%, var(--bg-3) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, var(--bg-2) 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, var(--bg-2) 0%, transparent 50%),
+      linear-gradient(160deg, var(--bg-1), var(--bg-2) 60%, var(--bg-1));
+    background-attachment:fixed;
+    overflow-x:hidden;
+    transition:background-color .5s ease;
+    position:relative;
+  }
+
+  /* ===================== ФОНОВЫЙ ДЕКОР: сердечки и блёстки ===================== */
+  .bg-decor{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .floaty{
+    position:absolute;
+    bottom:-10%;
+    font-size:clamp(16px, 3vw, 34px);
+    opacity:.55;
+    animation:floatUp linear infinite;
+    filter:drop-shadow(0 2px 6px rgba(var(--shadow-c),.25));
+    color:var(--accent);
+  }
+  @keyframes floatUp{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    10%{ opacity:.6; }
+    90%{ opacity:.5; }
+    100%{ transform:translateY(-115vh) translateX(var(--drift,20px)) rotate(25deg); opacity:0; }
+  }
+  .sparkle{
+    position:absolute;
+    width:8px;height:8px;
+    background:radial-gradient(circle, #fff 0%, var(--accent-2) 60%, transparent 70%);
+    border-radius:50%;
+    animation:twinkle 2.6s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{ transform:scale(.4); opacity:.2; }
+    50%{ transform:scale(1.3); opacity:1; }
+  }
+
+  /* ===================== ШАПКА ===================== */
+  header{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:56px 20px 30px;
+  }
+  .hero-cloud{
+    display:inline-block;
+    background:var(--card);
+    border-radius:40px;
+    padding:26px 38px;
+    box-shadow:0 18px 40px -12px rgba(var(--shadow-c),.35), 0 4px 12px rgba(var(--shadow-c),.15);
+    position:relative;
+  }
+  .hero-cloud::before, .hero-cloud::after{
+    content:"";
+    position:absolute;
+    background:var(--card);
+    border-radius:50%;
+  }
+  .hero-cloud::before{ width:50px; height:50px; top:-18px; left:30px; }
+  .hero-cloud::after{ width:70px; height:70px; top:-30px; right:40px; }
+
+  h1.site-title{
+    font-family:'Pacifico', cursive;
+    font-size:clamp(2rem, 6vw, 3.4rem);
+    color:var(--title);
+    margin:0;
+    line-height:1.2;
+    text-shadow:0 3px 0 rgba(255,255,255,.7);
+  }
+  .site-title .wand{
+    display:inline-block;
+    animation:wiggle 2.4s ease-in-out infinite;
+    transform-origin:70% 70%;
+  }
+  @keyframes wiggle{
+    0%,100%{ transform:rotate(0deg); }
+    25%{ transform:rotate(-14deg); }
+    75%{ transform:rotate(14deg); }
+  }
+  .subtitle{
+    font-family:'Comfortaa', cursive;
+    font-size:clamp(.9rem, 2.2vw, 1.15rem);
+    color:var(--text-soft);
+    margin-top:10px;
+  }
+
+  nav.pill-nav{
+    position:relative; z-index:2;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
+    padding:0 16px 10px;
+  }
+  nav.pill-nav a{
+    text-decoration:none;
+    font-family:'Comfortaa', cursive;
+    font-weight:700;
+    font-size:.85rem;
+    color:var(--accent-deep);
+    background:var(--card);
+    padding:12px 20px;
+    border-radius:24px;
+    box-shadow:0 8px 18px -8px rgba(var(--shadow-c),.4);
+    transition:transform .2s ease, box-shadow .2s ease, background .3s ease;
+    white-space:nowrap;
+  }
+  nav.pill-nav a:hover, nav.pill-nav a:focus-visible{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 12px 22px -8px rgba(var(--shadow-c),.55);
+  }
+
+  main{ position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:10px 18px 60px; }
+
+  section{ margin-top:60px; }
+  .section-head{ text-align:center; margin-bottom:26px; }
+  .section-head h2{
+    font-family:'Comfortaa', cursive;
+    font-size:clamp(1.5rem, 4vw, 2.1rem);
+    color:var(--title);
+    margin:0 0 6px;
+  }
+  .section-head p{
+    margin:0; color:var(--text-soft); font-size:.95rem;
+  }
+  .emoji-divider{
+    text-align:center; font-size:1.4rem; margin:8px 0 0; opacity:.7;
+    letter-spacing:10px;
+  }
+
+  /* ===================== ГАЛЕРЕЯ РИСУНКОВ ===================== */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+    gap:20px;
+  }
+  .art-card{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:28px;
+    background:var(--card);
+    box-shadow:0 14px 28px -14px rgba(var(--shadow-c),.45);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+    cursor:pointer;
+    perspective:800px;
+  }
+  .art-card .inner{
+    width:100%; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transition:transform .55s cubic-bezier(.2,.9,.3,1.2);
+    transform-style:preserve-3d;
+    padding:14px;
+    text-align:center;
+  }
+  .art-card:hover .inner, .art-card:focus-visible .inner{
+    transform:rotateY(180deg) scale(1.04);
+  }
+  .art-face, .art-back{
+    backface-visibility:hidden;
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border-radius:28px;
+  }
+  .art-face{
+    background:linear-gradient(160deg, var(--card-soft), var(--bg-2));
+  }
+  .art-back{
+    transform:rotateY(180deg);
+    background:linear-gradient(160deg, var(--accent-2), var(--accent));
+    color:#fff;
+    font-family:'Comfortaa', cursive;
+    font-weight:700;
+  }
+  .cloud-icon{ font-size:2.6rem; animation:bob 3s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-8px);} }
+  .art-face small{ display:block; margin-top:8px; color:var(--text-soft); font-size:.78rem; padding:0 10px; }
+
+  .upload-hint{
+    grid-column:1/-1;
+    text-align:center;
+    font-size:.8rem;
+    color:var(--text-soft);
+    margin-top:4px;
+  }
+
+  /* ===================== ДОСКА НАСТРОЕНИЯ (Pinterest style) ===================== */
+  .moodboard{
+    columns:2 220px;
+    column-gap:18px;
+  }
+  @media(min-width:640px){ .moodboard{ columns:3 220px; } }
+  .mood-tile{
+    break-inside:avoid;
+    margin-bottom:18px;
+    border-radius:26px;
+    padding:22px 16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    box-shadow:0 12px 24px -12px rgba(var(--shadow-c),.4);
+    font-family:'Comfortaa', cursive;
+    font-weight:700;
+    color:#fff;
+    transition:transform .25s ease;
+  }
+  .mood-tile:hover{ transform:translateY(-6px) rotate(-1deg); }
+  .mood-tile span.ico{ font-size:2.4rem; display:block; margin-bottom:8px; }
+  .mood-tile.h1{ min-height:120px; background:linear-gradient(150deg,#FFC1A0,#FF9EC7); }
+  .mood-tile.h2{ min-height:170px; background:linear-gradient(150deg,#C9B6FF,#FFB6D5); }
+  .mood-tile.h3{ min-height:140px; background:linear-gradient(150deg,#A8E6CF,#B6E3FF); }
+  .mood-tile.h4{ min-height:200px; background:linear-gradient(150deg,#FFE29A,#FFC1A0); }
+  .mood-tile.h5{ min-height:130px; background:linear-gradient(150deg,#FFB6D5,#C9B6FF); }
+  .mood-tile.h6{ min-height:160px; background:linear-gradient(150deg,#B6E3FF,#A8E6CF); }
+
+  /* ===================== ОБЩИЕ КАРТОЧКИ / КНОПКИ ===================== */
+  .panel{
+    background:var(--card);
+    border-radius:30px;
+    padding:26px;
+    box-shadow:0 16px 32px -16px rgba(var(--shadow-c),.45);
+  }
+  .btn{
+    font-family:'Comfortaa', cursive;
+    font-weight:700;
+    font-size:1rem;
+    border:none;
+    cursor:pointer;
+    color:#fff;
+    background:linear-gradient(135deg, var(--btn-grad-1), var(--btn-grad-2));
+    padding:16px 30px;
+    border-radius:26px;
+    box-shadow:0 10px 22px -8px rgba(var(--shadow-c),.55);
+    transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    min-height:52px;
+    min-width:52px;
+  }
+  .btn:hover, .btn:focus-visible{ transform:translateY(-3px) scale(1.04); filter:brightness(1.05); }
+  .btn:active{ transform:translateY(0) scale(.97); }
+
+  /* ===================== ИГРА 1: ЛОВИ СЕРДЕЧКО ===================== */
+  .game-zone{
+    position:relative;
+    height:340px;
+    border-radius:30px;
+    background:linear-gradient(160deg, var(--card-soft), var(--bg-3));
+    overflow:hidden;
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.6), 0 16px 32px -16px rgba(var(--shadow-c),.45);
+  }
+  .game-top{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px; margin-bottom:16px;
+  }
+  .score-badge{
+    font-family:'Comfortaa', cursive; font-weight:700;
+    background:var(--card);
+    border-radius:20px;
+    padding:10px 20px;
+    box-shadow:0 8px 16px -8px rgba(var(--shadow-c),.4);
+    color:var(--title);
+    font-size:1.05rem;
+  }
+  .heart-target{
+    position:absolute;
+    font-size:2rem;
+    cursor:pointer;
+    background:none; border:none;
+    line-height:1;
+    filter:drop-shadow(0 4px 8px rgba(var(--shadow-c),.5));
+    animation:pop-in .25s ease;
+    touch-action:manipulation;
+    padding:10px;
+  }
+  @keyframes pop-in{ from{ transform:scale(0);} to{ transform:scale(1);} }
+  .heart-pop{
+    position:absolute;
+    pointer-events:none;
+    font-size:1.6rem;
+    animation:pop-out .5s ease forwards;
+  }
+  @keyframes pop-out{
+    0%{ transform:scale(1); opacity:1; }
+    100%{ transform:scale(2.2) translateY(-20px); opacity:0; }
+  }
+  .game-empty-msg{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Comfortaa', cursive; color:var(--text-soft);
+    text-align:center; padding:20px; font-size:.95rem;
+    pointer-events:none;
+  }
+
+  /* ===================== ИГРА 2: РАСКРАСКА ===================== */
+  .coloring-wrap{
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+  }
+  .coloring-svg{
+    width:100%; max-width:380px; height:auto;
+    filter:drop-shadow(0 10px 20px rgba(var(--shadow-c),.3));
+  }
+  .coloring-svg path, .coloring-svg circle, .coloring-svg ellipse{
+    cursor:pointer;
+    stroke:#7A5468;
+    stroke-width:2.5;
+    transition:fill .15s ease;
+  }
+  .palette{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
+  }
+  .swatch{
+    width:46px; height:46px;
+    border-radius:50%;
+    border:3px solid #fff;
+    cursor:pointer;
+    box-shadow:0 6px 14px -4px rgba(0,0,0,.25);
+    transition:transform .15s ease;
+    padding:0;
+  }
+  .swatch:hover, .swatch:focus-visible{ transform:scale(1.15); }
+  .swatch.selected{ outline:3px solid var(--accent-deep); outline-offset:3px; transform:scale(1.15); }
+  .reset-btn{ font-size:.85rem; padding:10px 20px; }
+
+  footer{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:30px 20px 50px;
+    font-family:'Comfortaa', cursive;
+    color:var(--text-soft);
+    font-size:.85rem;
+  }
+
+  /* ===================== ПАНЕЛЬ НАСТРОЙКИ ЦВЕТА ===================== */
+  .theme-fab{
+    position:fixed;
+    bottom:22px; right:22px;
+    z-index:50;
+    width:60px; height:60px;
+    border-radius:50%;
+    border:none;
+    background:linear-gradient(135deg, var(--btn-grad-1), var(--btn-grad-2));
+    color:#fff;
+    font-size:1.6rem;
+    cursor:pointer;
+    box-shadow:0 12px 24px -8px rgba(var(--shadow-c),.6);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .25s ease;
+  }
+  .theme-fab:hover, .theme-fab:focus-visible{ transform:scale(1.1) rotate(15deg); }
+
+  .theme-panel{
+    position:fixed;
+    bottom:96px; right:22px;
+    z-index:50;
+    width:min(280px, calc(100vw - 44px));
+    background:var(--card);
+    border-radius:26px;
+    padding:20px;
+    box-shadow:0 20px 40px -12px rgba(var(--shadow-c),.5);
+    transform:translateY(20px) scale(.92);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .theme-panel.open{
+    transform:translateY(0) scale(1);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .theme-panel h3{
+    margin:0 0 14px; font-family:'Comfortaa', cursive; color:var(--title); font-size:1rem; text-align:center;
+  }
+  .theme-options{
+    display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
+  }
+  .theme-dot{
+    width:44px; height:44px;
+    border-radius:50%;
+    border:3px solid #fff;
+    cursor:pointer;
+    box-shadow:0 6px 14px -4px rgba(0,0,0,.25);
+    transition:transform .15s ease;
+    position:relative;
+  }
+  .theme-dot:hover, .theme-dot:focus-visible{ transform:scale(1.15); }
+  .theme-dot.active::after{
+    content:"✓";
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; text-shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+  .theme-dot[data-theme="pink"]{ background:linear-gradient(135deg,#FFD9E8,#FF9EC7); }
+  .theme-dot[data-theme="blue"]{ background:linear-gradient(135deg,#D6ECFF,#8FCBFF); }
+  .theme-dot[data-theme="lilac"]{ background:linear-gradient(135deg,#EBDDFF,#C9A6FF); }
+  .theme-dot[data-theme="peach"]{ background:linear-gradient(135deg,#FFE7D3,#FFB27A); }
+  .theme-dot[data-theme="mint"]{ background:linear-gradient(135deg,#DDFBEA,#8CE0B4); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001s !important; animation-iteration-count:1 !important; transition-duration:.001s !important; }
+  }
+
+  ::selection{ background:var(--accent); color:#fff; }
+</style>
+</head>
+<body>
+
+<div class="bg-decor" id="bgDecor" aria-hidden="true"></div>
+
+<header>
+  <div class="hero-cloud">
+    <h1 class="site-title"><span class="wand">🪄</span> Волшебный уголок Софии <span class="wand">🪄</span></h1>
+    <p class="subtitle">здесь живут мои рисунки, мечты и маленькие секретики ✨</p>
+  </div>
+</header>
+
+<nav class="pill-nav" aria-label="Навигация по сайту">
+  <a href="#gallery">🖼️ Мои рисунки</a>
+  <a href="#moodboard">💖 Любимые картинки</a>
+  <a href="#heartgame">💗 Игра: Лови сердечко</a>
+  <a href="#coloring">🎨 Раскраска</a>
+</nav>
+
+<main>
+
+  <section id="gallery">
+    <div class="section-head">
+      <h2>🖼️ Мои рисунки</h2>
+      <p>Каждая картинка — маленькое волшебство!</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <p class="upload-hint">(наведи или нажми на облачко — а скоро тут будут настоящие рисунки!)</p>
+  </section>
+
+  <section id="moodboard">
+    <div class="section-head">
+      <h2>💖 Мои любимые картинки</h2>
+      <p>Доска настроения — то, что вдохновляет меня рисовать</p>
+    </div>
+    <div class="moodboard">
+      <div class="mood-tile h2"><span class="ico">🦄</span>Единороги</div>
+      <div class="mood-tile h1"><span class="ico">🌸</span>Цветочки</div>
+      <div class="mood-tile h4"><span class="ico">🧁</span>Кексики</div>
+      <div class="mood-tile h3"><span class="ico">🐇</span>Пушистые зайки</div>
+      <div class="mood-tile h6"><span class="ico">🌈</span>Радуги</div>
+      <div class="mood-tile h5"><span class="ico">⭐</span>Звёздочки</div>
+    </div>
+  </section>
+
+  <section id="heartgame">
+    <div class="section-head">
+      <h2>💗 Лови сердечко!</h2>
+      <p>Нажимай на сердечки, пока они не улетели</p>
+    </div>
+    <div class="panel">
+      <div class="game-top">
+        <div class="score-badge">⭐ Очки: <span id="scoreVal">0</span></div>
+        <button class="btn" id="startGameBtn">▶️ Начать игру</button>
+      </div>
+      <div class="game-zone" id="gameZone">
+        <div class="game-empty-msg" id="gameEmptyMsg">Нажми «Начать игру», и тут появятся сердечки! 💕</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coloring">
+    <div class="section-head">
+      <h2>🎨 Раскрась единорога</h2>
+      <p>Выбери цвет, а потом нажми на часть картинки</p>
+    </div>
+    <div class="panel coloring-wrap">
+      <svg class="coloring-svg" id="coloringSvg" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- грива -->
+        <path data-part="mane" d="M95 90 C60 70 55 40 80 25 C75 45 95 55 105 45 C100 30 115 15 140 20 C130 35 140 50 155 45 C155 30 175 25 185 40 C170 45 175 60 190 65 C165 70 150 95 140 110 Z" fill="#FFFFFF"/>
+        <!-- рог -->
+        <path data-part="horn" d="M150 20 L162 62 L138 62 Z" fill="#FFFFFF"/>
+        <!-- уши -->
+        <path data-part="ears" d="M110 55 L120 30 L128 58 Z M172 55 L182 30 L188 60 Z" fill="#FFFFFF"/>
+        <!-- голова -->
+        <path data-part="head" d="M110 60 C80 65 65 95 70 125 C55 130 45 150 55 170 C60 195 90 210 125 205 C150 220 190 210 200 180 C220 175 225 150 205 135 C215 110 195 80 165 70 C150 60 125 58 110 60 Z" fill="#FFFFFF"/>
+        <!-- тело -->
+        <path data-part="body" d="M90 200 C70 220 65 260 90 280 C130 300 210 300 245 275 C270 255 265 215 235 200 C200 185 130 185 90 200 Z" fill="#FFFFFF"/>
+        <!-- ножки -->
+        <path data-part="legs" d="M110 270 L105 310 L120 310 L122 272 Z M150 275 L148 312 L163 312 L163 275 Z M195 275 L195 312 L210 312 L208 275 Z M225 265 L228 305 L243 303 L238 262 Z" fill="#FFFFFF"/>
+        <!-- хвост -->
+        <path data-part="tail" d="M245 210 C275 200 290 175 285 150 C300 165 300 195 280 215 C295 220 300 245 285 260 C275 235 255 230 245 220 Z" fill="#FFFFFF"/>
+        <!-- щёчка -->
+        <ellipse data-part="cheek" cx="115" cy="150" rx="10" ry="7" fill="#FFFFFF"/>
+        <!-- глаз -->
+        <circle data-part="eye" cx="140" cy="130" r="6" fill="#5A3E4D"/>
+      </svg>
+      <div class="palette" id="palette"></div>
+      <button class="btn reset-btn" id="resetColoringBtn">🔄 Начать заново</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  сделано с 💕 специально для тебя
+</footer>
+
+<button class="theme-fab" id="themeFab" aria-label="Открыть настройки темы" aria-expanded="false" aria-controls="themePanel">🎨</button>
+<div class="theme-panel" id="themePanel" role="menu" aria-label="Выбор темы оформления">
+  <h3>Выбери свой цвет ✨</h3>
+  <div class="theme-options">
+    <button class="theme-dot" data-theme="pink" aria-label="Розовая тема"></button>
+    <button class="theme-dot" data-theme="peach" aria-label="Персиковая тема"></button>
+    <button class="theme-dot" data-theme="lilac" aria-label="Сиреневая тема"></button>
+    <button class="theme-dot" data-theme="blue" aria-label="Голубая тема"></button>
+    <button class="theme-dot" data-theme="mint" aria-label="Мятная тема"></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ ТЕМЫ ============ */
+  const THEMES = {
+    pink:{ '--bg-1':'#FFF3EC','--bg-2':'#FFE4EC','--bg-3':'#FFD9E8','--card':'#FFFDFB','--card-soft':'#FFF0F5',
+      '--accent':'#FF9EC7','--accent-2':'#FFC1A0','--accent-deep':'#F97CA8','--title':'#F06AA0',
+      '--btn-grad-1':'#FFB6D5','--btn-grad-2':'#FF9EC7','--shadow-c':'255,158,199' },
+    peach:{ '--bg-1':'#FFF6EC','--bg-2':'#FFE9D6','--bg-3':'#FFDDBE','--card':'#FFFDFB','--card-soft':'#FFF3E6',
+      '--accent':'#FFB27A','--accent-2':'#FFD59E','--accent-deep':'#F5924A','--title':'#EF8A3E',
+      '--btn-grad-1':'#FFCB9A','--btn-grad-2':'#FFB27A','--shadow-c':'255,178,122' },
+    lilac:{ '--bg-1':'#F6F0FF','--bg-2':'#EBDDFF','--bg-3':'#E0CCFF','--card':'#FDFBFF','--card-soft':'#F3EBFF',
+      '--accent':'#C9A6FF','--accent-2':'#D9C2FF','--accent-deep':'#A876F0','--title':'#9F5FE0',
+      '--btn-grad-1':'#D6B8FF','--btn-grad-2':'#C9A6FF','--shadow-c':'201,166,255' },
+    blue:{ '--bg-1':'#EFF8FF','--bg-2':'#D6ECFF','--bg-3':'#C2E1FF','--card':'#FBFEFF','--card-soft':'#E9F5FF',
+      '--accent':'#8FCBFF','--accent-2':'#B9E0FF','--accent-deep':'#4FA6E8','--title':'#3E93D6',
+      '--btn-grad-1':'#A9DBFF','--btn-grad-2':'#8FCBFF','--shadow-c':'143,203,255' },
+    mint:{ '--bg-1':'#F0FFF6','--bg-2':'#DDFBEA','--bg-3':'#C7F5DC','--card':'#FBFFFC','--card-soft':'#E9FBF0',
+      '--accent':'#8CE0B4','--accent-2':'#BDEFD4','--accent-deep':'#4FBE84','--title':'#3CAE79',
+      '--btn-grad-1':'#A6E9C4','--btn-grad-2':'#8CE0B4','--shadow-c':'140,224,180' }
+  };
+
+  const root = document.documentElement;
+  function applyTheme(name){
+    const t = THEMES[name] || THEMES.pink;
+    Object.entries(t).forEach(([k,v]) => root.style.setProperty(k, v));
+    document.querySelectorAll('.theme-dot').forEach(d => d.classList.toggle('active', d.dataset.theme === name));
+    try{ localStorage.setItem('kidSiteTheme', name); }catch(e){}
+  }
+  let savedTheme = 'pink';
+  try{ savedTheme = localStorage.getItem('kidSiteTheme') || 'pink'; }catch(e){}
+  applyTheme(savedTheme);
+
+  const themeFab = document.getElementById('themeFab');
+  const themePanel = document.getElementById('themePanel');
+  themeFab.addEventListener('click', ()=>{
+    const open = themePanel.classList.toggle('open');
+    themeFab.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+  document.addEventListener('click', (e)=>{
+    if(!themePanel.contains(e.target) && !themeFab.contains(e.target)){
+      themePanel.classList.remove('open');
+      themeFab.setAttribute('aria-expanded','false');
+    }
+  });
+  document.querySelectorAll('.theme-dot').forEach(dot=>{
+    dot.addEventListener('click', ()=> applyTheme(dot.dataset.theme));
+  });
+
+  /* ============ ФОНОВЫЙ ДЕКОР: сердечки + блёстки ============ */
+  const bgDecor = document.getElementById('bgDecor');
+  const heartEmojis = ['💗','💕','💖','💓','✨'];
+  function spawnFloaty(){
+    const el = document.createElement('div');
+    el.className = 'floaty';
+    el.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.setProperty('--drift', (Math.random()*80-40)+'px');
+    const dur = 10 + Math.random()*10;
+    el.style.animationDuration = dur + 's';
+    bgDecor.appendChild(el);
+    setTimeout(()=> el.remove(), dur*1000 + 500);
+  }
+  for(let i=0;i<6;i++) setTimeout(spawnFloaty, i*900);
+  setInterval(spawnFloaty, 2200);
+
+  function spawnSparkle(){
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.top = Math.random()*100 + 'vh';
+    el.style.animationDelay = (Math.random()*2)+'s';
+    bgDecor.appendChild(el);
+    setTimeout(()=> el.remove(), 5000);
+  }
+  for(let i=0;i<18;i++) setTimeout(spawnSparkle, i*180);
+  setInterval(spawnSparkle, 700);
+
+  /* ============ ГАЛЕРЕЯ РИСУНКОВ (заглушки) ============ */
+  const galleryGrid = document.getElementById('galleryGrid');
+  const placeholderMsgs = [
+    'Скоро здесь будет мой шедевр!',
+    'Тут появится волшебная картина!',
+    'Место для новой сказки на бумаге!',
+    'Здесь будет жить мой рисунок!',
+    'Ждём вдохновения... ✨',
+    'Тут будет что-то очень красивое!'
+  ];
+  placeholderMsgs.forEach((msg, i)=>{
+    const card = document.createElement('div');
+    card.className = 'art-card';
+    card.tabIndex = 0;
+    card.innerHTML = `
+      <div class="inner">
+        <div class="art-face">
+          <span class="cloud-icon">☁️</span>
+          <small>${msg}</small>
+        </div>
+        <div class="art-back">
+          <span class="cloud-icon">🌟</span>
+          <small>Рисунок №${i+1}</small>
+        </div>
+      </div>`;
+    galleryGrid.appendChild(card);
+  });
+
+  /* ============ ИГРА 1: ЛОВИ СЕРДЕЧКО ============ */
+  const gameZone = document.getElementById('gameZone');
+  const gameEmptyMsg = document.getElementById('gameEmptyMsg');
+  const startGameBtn = document.getElementById('startGameBtn');
+  const scoreVal = document.getElementById('scoreVal');
+  const heartChars = ['💗','💖','💕','💓','❤️'];
+  let score = 0, gameInterval = null, gameRunning = false;
+
+  function spawnHeart(){
+    if(!gameRunning) return;
+    const zoneW = gameZone.clientWidth, zoneH = gameZone.clientHeight;
+    const btn = document.createElement('button');
+    btn.className = 'heart-target';
+    btn.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+    btn.style.left = Math.max(0, Math.random()*(zoneW-50)) + 'px';
+    btn.style.top = Math.max(0, Math.random()*(zoneH-50)) + 'px';
+    btn.setAttribute('aria-label','Поймать сердечко');
+
+    const life = setTimeout(()=> btn.remove(), 1700);
+    btn.addEventListener('click', ()=>{
+      clearTimeout(life);
+      score++;
+      scoreVal.textContent = score;
+      const rect = btn.getBoundingClientRect();
+      const zoneRect = gameZone.getBoundingClientRect();
+      const pop = document.createElement('div');
+      pop.className = 'heart-pop';
+      pop.textContent = '💥';
+      pop.style.left = (rect.left - zoneRect.left) + 'px';
+      pop.style.top = (rect.top - zoneRect.top) + 'px';
+      gameZone.appendChild(pop);
+      setTimeout(()=> pop.remove(), 550);
+      btn.remove();
+    });
+    gameZone.appendChild(btn);
+  }
+
+  startGameBtn.addEventListener('click', ()=>{
+    if(gameRunning) return;
+    gameRunning = true;
+    score = 0;
+    scoreVal.textContent = 0;
+    gameEmptyMsg.style.display = 'none';
+    startGameBtn.textContent = '💫 Игра идёт...';
+    gameInterval = setInterval(spawnHeart, 750);
+    setTimeout(()=>{
+      gameRunning = false;
+      clearInterval(gameInterval);
+      gameZone.querySelectorAll('.heart-target').forEach(h=>h.remove());
+      startGameBtn.textContent = '▶️ Играть ещё раз';
+      const doneMsg = document.createElement('div');
+      doneMsg.className = 'game-empty-msg';
+      doneMsg.textContent = `Ура! Ты поймала ${score} сердечек! 🎉`;
+      gameZone.appendChild(doneMsg);
+    }, 20000);
+  });
+
+  /* ============ ИГРА 2: РАСКРАСКА ============ */
+  const colors = ['#FFB6D5','#FFD59E','#FFF3A0','#B9E0FF','#C9A6FF','#A8E6CF','#FF9EC7','#FFFFFF'];
+  const palette = document.getElementById('palette');
+  let selectedColor = colors[0];
+
+  colors.forEach((c, i)=>{
+    const sw = document.createElement('button');
+    sw.className = 'swatch' + (i===0 ? ' selected' : '');
+    sw.style.background = c;
+    sw.setAttribute('aria-label', 'Цвет '+c);
+    sw.addEventListener('click', ()=>{
+      selectedColor = c;
+      document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('selected'));
+      sw.classList.add('selected');
+    });
+    palette.appendChild(sw);
+  });
+
+  const svg = document.getElementById('coloringSvg');
+  svg.querySelectorAll('[data-part]').forEach(part=>{
+    part.addEventListener('click', ()=>{ part.setAttribute('fill', selectedColor); });
+  });
+
+  document.getElementById('resetColoringBtn').addEventListener('click', ()=>{
+    svg.querySelectorAll('[data-part]').forEach(part=>{
+      part.setAttribute('fill', part.dataset.part === 'eye' ? '#5A3E4D' : '#FFFFFF');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
